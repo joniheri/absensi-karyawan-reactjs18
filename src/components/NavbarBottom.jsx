@@ -1,11 +1,15 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { GlobalContext } from "../context/GlobalContext";
 
 export default function NavbarBottom() {
   const location = useLocation();
+  const [globalState, globalDispatch] = useContext(GlobalContext);
+  const navigate = useNavigate();
+
   return (
     <>
-      <div style={{ marginTop: "60px" }}></div>
+      <div style={{ marginBottom: "120px" }}></div>
       {/* <!-- Bottom Navbar --> */}
       <nav className="navbar navbar-expand navbar-light bg-light border-top fixed-bottom">
         <div className="container-fluid">
@@ -27,39 +31,75 @@ export default function NavbarBottom() {
                 <div style={{ fontSize: "13px" }}>Home</div>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/login"
-                className={`nav-link ${
-                  location.pathname === "/login" && "active"
-                }`}
-              >
-                <img
-                  src="assets/img/icons/icons8-login-100-black.png"
-                  alt=""
-                  style={{
-                    height: "24px",
-                    width: "auto",
-                    marginRight: "5px",
-                  }}
-                />
-                <div style={{ fontSize: "13px" }}>Login</div>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/profile" className="nav-link">
-                <img
-                  src="assets/img/icons/icons8-user-96-black.png"
-                  alt=""
-                  style={{
-                    height: "24px",
-                    width: "auto",
-                    marginRight: "5px",
-                  }}
-                />
-                <div style={{ fontSize: "13px" }}>Profile</div>
-              </Link>
-            </li>
+
+            {globalState.isLogin ? (
+              <>
+                <li className="nav-item">
+                  <Link
+                    to="/profile"
+                    className={`nav-link ${
+                      location.pathname === "/profile" && "active"
+                    }`}
+                  >
+                    <img
+                      src="assets/img/icons/icons8-user-96-black.png"
+                      alt=""
+                      style={{
+                        height: "24px",
+                        width: "auto",
+                        marginRight: "5px",
+                      }}
+                    />
+                    <div style={{ fontSize: "13px" }}>Profile</div>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className={`nav-link ${
+                      location.pathname === "/login" && "active"
+                    }`}
+                    onClick={() => {
+                      globalDispatch({
+                        type: "PROCESS_LOGOUT",
+                      });
+                      localStorage.clear();
+                      navigate("/");
+                    }}
+                  >
+                    <img
+                      src="assets/img/icons/icons8-logout-100-black.png"
+                      alt=""
+                      style={{
+                        height: "24px",
+                        width: "auto",
+                        marginRight: "5px",
+                      }}
+                    />
+                    <div style={{ fontSize: "13px" }}>Logout</div>
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  to="/login"
+                  className={`nav-link ${
+                    location.pathname === "/login" && "active"
+                  }`}
+                >
+                  <img
+                    src="assets/img/icons/icons8-login-100-black.png"
+                    alt=""
+                    style={{
+                      height: "24px",
+                      width: "auto",
+                      marginRight: "5px",
+                    }}
+                  />
+                  <div style={{ fontSize: "13px" }}>Login</div>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
