@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 container-fluid">
       <div className="row">
         <div className="col-lg-4"></div>
         <div className="col-lg-4">
