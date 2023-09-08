@@ -13,7 +13,7 @@ export const GlobalContextProvider = (props) => {
 };
 
 const initialState = {
-  isLogin: false,
+  isLogin: true,
   userLogin: [],
 };
 

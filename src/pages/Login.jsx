@@ -20,8 +20,39 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      if (emailInput === "") {
+        setMsgAlert("Email tidak boleh kosong");
+        setTypeAlert("fail");
+        emailRef.current.focus();
+        return;
+      }
+
+      if (passwordInput === "") {
+        setMsgAlert("Password tidak boleh kosong");
+        setTypeAlert("fail");
+        passwordRef.current.focus();
+        return;
+      }
+
+      const response = await ApiVersi1.post("/login", {
+        email: emailInput,
+        password: passwordInput,
+      });
+      // console.log(response);
+      setMsgAlert(response.data.message);
+      setTypeAlert("success");
+      setTimeout(() => {
+        localStorage.setItem("token", response.data.token);
+        globalDispatch({
+          type: "PROCESS_LOGIN",
+          data: response.data.user,
+        });
+        navigate("/");
+      }, 1600);
     } catch (error) {
       console.log(error);
+      setMsgAlert(error.response.data.message);
+      setTypeAlert(error.response.data.status);
     }
   };
 
