@@ -19,12 +19,12 @@ export default function NavbarBottom() {
                   src="assets/img/icons/icons8-home-144-black.png"
                   alt=""
                   style={{
-                    height: "27px",
+                    height: "24px",
                     width: "auto",
                     marginRight: "5px",
                   }}
                 />
-                <div>Home</div>
+                <div style={{ fontSize: "13px" }}>Home</div>
               </Link>
             </li>
             <li className="nav-item">
@@ -38,12 +38,12 @@ export default function NavbarBottom() {
                   src="assets/img/icons/icons8-login-100-black.png"
                   alt=""
                   style={{
-                    height: "27px",
+                    height: "24px",
                     width: "auto",
                     marginRight: "5px",
                   }}
                 />
-                <div>Login</div>
+                <div style={{ fontSize: "13px" }}>Login</div>
               </Link>
             </li>
             <li className="nav-item">
@@ -52,12 +52,12 @@ export default function NavbarBottom() {
                   src="assets/img/icons/icons8-user-96-black.png"
                   alt=""
                   style={{
-                    height: "27px",
+                    height: "24px",
                     width: "auto",
                     marginRight: "5px",
                   }}
                 />
-                <div>Profile</div>
+                <div style={{ fontSize: "13px" }}>Profile</div>
               </Link>
             </li>
           </ul>
