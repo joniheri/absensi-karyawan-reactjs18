@@ -18,9 +18,9 @@ export default function NavbarBottom() {
               <>
                 <li className="nav-item">
                   <Link
-                    to="/absen"
+                    to="/attendance"
                     className={`nav-link ${
-                      location.pathname === "/absen" && "active"
+                      location.pathname === "/attendance" && "active"
                     }`}
                   >
                     <img
@@ -37,9 +37,9 @@ export default function NavbarBottom() {
                 </li>
                 <li className="nav-item">
                   <Link
-                    to="/summary-absen"
+                    to="/summary-attendance"
                     className={`nav-link ${
-                      location.pathname === "/summary-absen" && "active"
+                      location.pathname === "/summary-attendance" && "active"
                     }`}
                   >
                     <img
@@ -82,7 +82,7 @@ export default function NavbarBottom() {
                       globalDispatch({
                         type: "PROCESS_LOGOUT",
                       });
-                      localStorage.clear();
+                      alert("Logout SUCCESS");
                       navigate("/");
                     }}
                   >

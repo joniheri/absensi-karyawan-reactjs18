@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { ApiBaseUrl } from "../configs/AppConfig";
+import { GlobalContext } from "../context/GlobalContext";
 
 export default function PrivateRoute() {
+  const [globalState, globalDispatch] = useContext(GlobalContext);
+
   const [isLogin, setIsLogin] = useState(true);
 
   useEffect(() => {
@@ -20,6 +23,10 @@ export default function PrivateRoute() {
         });
         // console.log("response checktoken: ", response);
         setIsLogin(true);
+        globalDispatch({
+          type: "PROCESS_LOGIN",
+          data: response.data.user,
+        });
       } else {
         console.log("Autorization required");
         setIsLogin(false);

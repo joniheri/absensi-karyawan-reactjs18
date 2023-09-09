@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import { ApiBaseUrl } from "./configs/AppConfig";
 import { GlobalContext } from "./context/GlobalContext";
@@ -12,8 +12,11 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import PageNoteFound from "./pages/PageNoteFound";
 import Profile from "./pages/Profile";
+import Attendance from "./pages/Attendance";
+import SummaryAttendance from "./pages/SummaryAttendance";
 
 function App() {
+  const navigate = useNavigate();
   const [globalState, globalDispatch] = useContext(GlobalContext);
 
   useEffect(() => {
@@ -32,9 +35,13 @@ function App() {
         // console.log("response checktoken: ", response);
         globalDispatch({
           type: "PROCESS_LOGIN",
+          data: response.data.user,
         });
+        navigate("/attendance");
       } else {
-        console.log("Autorization Required");
+        // console.log("Autorization Required");
+        localStorage.clear();
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
@@ -47,20 +54,19 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="*" element={<PageNoteFound />} />
-          <Route path="/" element={<Home />} />
-          <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-        </Routes>
-
-        <NavbarBottom />
-      </BrowserRouter>
+      <Routes>
+        <Route path="*" element={<PageNoteFound />} />
+        <Route path="/" element={<Home />} />
+        <Route element={<PublicRoute />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/attendance" element={<Attendance />} />
+          <Route path="/summary-attendance" element={<SummaryAttendance />} />
+        </Route>
+      </Routes>
+      <NavbarBottom />
     </>
   );
 }

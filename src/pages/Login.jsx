@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
+import { ApiBaseUrl } from "../configs/AppConfig";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -34,23 +35,23 @@ export default function Login() {
         return;
       }
 
-      const response = await ApiVersi1.post("/login", {
+      const response = await ApiBaseUrl.post("/login", {
         email: emailInput,
         password: passwordInput,
       });
       // console.log(response);
       setMsgAlert(response.data.message);
       setTypeAlert("success");
+      localStorage.setItem("token", response.data.token);
       setTimeout(() => {
-        localStorage.setItem("token", response.data.token);
         globalDispatch({
           type: "PROCESS_LOGIN",
           data: response.data.user,
         });
-        navigate("/");
+        navigate("/attendance");
       }, 1600);
     } catch (error) {
-      console.log(error);
+      console.log("Error in Login.jsx: ", error);
       setMsgAlert(error.response.data.message);
       setTypeAlert(error.response.data.status);
     }

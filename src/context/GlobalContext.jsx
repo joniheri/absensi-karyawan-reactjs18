@@ -13,7 +13,7 @@ export const GlobalContextProvider = (props) => {
 };
 
 const initialState = {
-  isLogin: true,
+  isLogin: false,
   userLogin: [],
 };
 
@@ -22,6 +22,7 @@ const reduces = (state, action) => {
     return {
       ...state,
       isLogin: true,
+      userLogin: action.data,
     };
   } else if (action.type === "PROCESS_LOGOUT") {
     return {
