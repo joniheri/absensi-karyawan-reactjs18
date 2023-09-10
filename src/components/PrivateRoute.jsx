@@ -14,23 +14,18 @@ export default function PrivateRoute() {
 
   const checkToken = async () => {
     try {
-      if (localStorage.token) {
-        const token = localStorage.token;
-        const response = await ApiBaseUrl.get("/check-token", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        // console.log("response checktoken: ", response);
-        setIsLogin(true);
-        globalDispatch({
-          type: "PROCESS_LOGIN",
-          data: response.data.user,
-        });
-      } else {
-        console.log("Autorization required");
-        setIsLogin(false);
-      }
+      const token = localStorage.token;
+      const response = await ApiBaseUrl.get("/check-token", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log("response checktoken: ", response);
+      setIsLogin(true);
+      globalDispatch({
+        type: "PROCESS_LOGIN",
+        data: response.data.user,
+      });
     } catch (error) {
       console.log(error);
       localStorage.clear();

@@ -18,6 +18,28 @@ export default function NavbarBottom() {
               <>
                 <li className="nav-item">
                   <Link
+                    to="/profile"
+                    className={`nav-link ${
+                      location.pathname === "/profile" ||
+                      location.pathname === "/edit-photo-profile"
+                        ? "active"
+                        : ""
+                    }`}
+                  >
+                    <img
+                      src="assets/img/icons/icons8-user-96-black.png"
+                      alt=""
+                      style={{
+                        height: "24px",
+                        width: "auto",
+                        marginRight: "5px",
+                      }}
+                    />
+                    <div style={{ fontSize: "13px" }}>Profile</div>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
                     to="/attendance"
                     className={`nav-link ${
                       location.pathname === "/attendance" && "active"
@@ -54,25 +76,27 @@ export default function NavbarBottom() {
                     <div style={{ fontSize: "13px" }}>Summary Absen</div>
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link
-                    to="/profile"
-                    className={`nav-link ${
-                      location.pathname === "/profile" && "active"
-                    }`}
-                  >
-                    <img
-                      src="assets/img/icons/icons8-user-96-black.png"
-                      alt=""
-                      style={{
-                        height: "24px",
-                        width: "auto",
-                        marginRight: "5px",
-                      }}
-                    />
-                    <div style={{ fontSize: "13px" }}>Profile</div>
-                  </Link>
-                </li>
+                {globalState.userLogin.level === "admin" && (
+                  <li className="nav-item">
+                    <Link
+                      to="/users"
+                      className={`nav-link ${
+                        location.pathname === "/users" && "active"
+                      }`}
+                    >
+                      <img
+                        src="assets/img/icons/icons8-people-100-black.png"
+                        alt=""
+                        style={{
+                          height: "24px",
+                          width: "auto",
+                          marginRight: "5px",
+                        }}
+                      />
+                      <div style={{ fontSize: "13px" }}>Users</div>
+                    </Link>
+                  </li>
+                )}
                 <li className="nav-item">
                   <button
                     className={`nav-link ${

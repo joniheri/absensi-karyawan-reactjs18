@@ -46,6 +46,18 @@ export default function Attendance() {
     };
   };
 
+  const takeAttendanceGoHome = async () => {
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const takeAttendanceEnter = async () => {
+    try {
+    } catch (error) {}
+  };
+
   return (
     <div className="container-fluid mt-4">
       <div style={{ textAlign: "center" }}>
@@ -54,8 +66,12 @@ export default function Attendance() {
           <strong>{timeFormat}</strong>
         </h1>
         <div className=" mt-4">
-          <button className="btn btn-success me-3">Ambil absen masuk</button>
-          <button className="btn btn-secondary me-3">Ambil absen pulang</button>
+          <button className="btn btn-success me-3 mb-3">
+            Ambil absen masuk
+          </button>
+          <button className="btn btn-secondary me-3 mb-3">
+            Ambil absen pulang
+          </button>
         </div>
       </div>
       <div style={{ marginTop: "100px" }}>

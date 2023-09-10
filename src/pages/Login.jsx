@@ -48,7 +48,7 @@ export default function Login() {
           type: "PROCESS_LOGIN",
           data: response.data.user,
         });
-        navigate("/attendance");
+        navigate("/profile");
       }, 1600);
     } catch (error) {
       console.log("Error in Login.jsx: ", error);

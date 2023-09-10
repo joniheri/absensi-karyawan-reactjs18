@@ -11,9 +11,11 @@ import NavbarBottom from "./components/NavbarBottom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import PageNoteFound from "./pages/PageNoteFound";
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import Attendance from "./pages/Attendance";
 import SummaryAttendance from "./pages/SummaryAttendance";
+import DataUsers from "./pages/user/DataUsers";
+import EditPhotoProfile from "./pages/Profile/EditPhotoProfile";
 
 function App() {
   const navigate = useNavigate();
@@ -37,7 +39,7 @@ function App() {
           type: "PROCESS_LOGIN",
           data: response.data.user,
         });
-        navigate("/attendance");
+        navigate("/profile");
       } else {
         // console.log("Autorization Required");
         localStorage.clear();
@@ -62,8 +64,10 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/edit-photo-profile" element={<EditPhotoProfile />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/summary-attendance" element={<SummaryAttendance />} />
+          <Route path="/users" element={<DataUsers />} />
         </Route>
       </Routes>
       <NavbarBottom />
