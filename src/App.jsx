@@ -16,6 +16,7 @@ import Attendance from "./pages/Attendance";
 import SummaryAttendance from "./pages/SummaryAttendance";
 import DataUsers from "./pages/user/DataUsers";
 import EditPhotoProfile from "./pages/Profile/EditPhotoProfile";
+import ChangePassword from "./pages/Profile/ChangePassword";
 
 function App() {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ function App() {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/edit-photo-profile" element={<EditPhotoProfile />} />
           <Route path="/attendance" element={<Attendance />} />
           <Route path="/summary-attendance" element={<SummaryAttendance />} />

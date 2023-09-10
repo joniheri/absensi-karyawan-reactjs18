@@ -80,7 +80,7 @@ export default function Profile() {
         setMsgAlert("");
       }, 1600);
     } catch (error) {
-      console.log("Error in Login.jsx: ", error);
+      // console.log("Error in Login.jsx: ", error);
       setMsgAlert(error.response.data.message);
       setTypeAlert(error.response.data.status);
     }
@@ -216,8 +216,13 @@ export default function Profile() {
             <button type="submit" className="btn btn-success mb-3 w-100">
               Save Changes
             </button>
-            <button className="btn btn-secondary mb-3 w-100">
-              Edit Password
+            <button
+              className="btn btn-secondary mb-3 w-100"
+              onClick={() => {
+                navigate("/change-password");
+              }}
+            >
+              Change Password
             </button>
           </form>
         </div>
