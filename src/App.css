@@ -2,3 +2,8 @@
   background-color: #dfe4e8;
   border-radius: 5px;
 }
+.custom-datepicker {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 3px 10px 5px 10px;
+}

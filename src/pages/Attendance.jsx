@@ -65,7 +65,7 @@ export default function Attendance() {
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
+      // console.log(response);
       setTimeStartIn(response.data.data[0].timeStart.substring(0, 5));
       setTimeEndIn(response.data.data[0].timeEnd.substring(0, 5));
       setTimeStartOut(response.data.data[1].timeStart.substring(0, 5));
