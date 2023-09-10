@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../context/GlobalContext";
+import React, { useEffect, useState } from "react";
+import { ApiBaseUrl } from "../configs/AppConfig";
 
 export default function Attendance() {
-  const [globalState] = useContext(GlobalContext);
+  const [msgAlert, setMsgAlert] = useState("");
+  const [typeAlert, setTypeAlert] = useState("");
 
   const [tanggal, setTanggal] = useState(new Date());
   const optionsDate = {
@@ -21,9 +22,14 @@ export default function Attendance() {
   };
   const timeFormat = jam.toLocaleTimeString("id-ID", optionsTime);
 
+  const dateNow2 = new Date();
+  const tanggalSekarang = `${dateNow2.getFullYear()}-${dateNow2.getMonth()}-${dateNow2.getDate()}`;
+  const jamSekarang = `${dateNow2.getHours()}.${dateNow2.getMinutes()}.${dateNow2.getSeconds()}`;
+
   useEffect(() => {
     dateNow();
     timeNow();
+    getAttendanceConfig();
   }, []);
 
   const dateNow = () => {
@@ -46,16 +52,85 @@ export default function Attendance() {
     };
   };
 
-  const takeAttendanceGoHome = async () => {
+  const [timeStartIn, setTimeStartIn] = useState();
+  const [timeEndIn, setTimeEndIn] = useState();
+  const [timeStartOut, setTimeStartOut] = useState();
+  const [timeEndOut, setTimeEndOut] = useState();
+
+  const getAttendanceConfig = async () => {
     try {
+      const response = await ApiBaseUrl.get("/attendanceconfig", {
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      setTimeStartIn(response.data.data[0].timeStart.substring(0, 5));
+      setTimeEndIn(response.data.data[0].timeEnd.substring(0, 5));
+      setTimeStartOut(response.data.data[1].timeStart.substring(0, 5));
+      setTimeEndOut(response.data.data[1].timeEnd.substring(0, 5));
     } catch (error) {
       console.log(error);
+      setMsgAlert(error.response.data.message);
+      setTypeAlert(error.response.data.status);
     }
   };
 
-  const takeAttendanceEnter = async () => {
+  const handleTakeAttendanceIn = async () => {
     try {
-    } catch (error) {}
+      if (
+        timeFormat >= `${timeStartIn}.59` &&
+        timeFormat <= `${timeEndIn}.59`
+      ) {
+        const response = await ApiBaseUrl.get("/take-attendance-in", {
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        setMsgAlert(response.data.message);
+        setTypeAlert("success");
+        setTimeout(() => {
+          setMsgAlert("");
+        }, 2000);
+      } else {
+        setMsgAlert("Absen Masuk hanya bisa di 05.00 - 07.00");
+        setTypeAlert("fail");
+      }
+    } catch (error) {
+      console.log(error);
+      setMsgAlert(error.response.data.message);
+      setTypeAlert(error.response.data.status);
+    }
+  };
+
+  const handleTakeAttendanceOut = async () => {
+    try {
+      if (
+        timeFormat >= `${timeStartOut}.59` &&
+        timeFormat <= `${timeEndOut}.59`
+      ) {
+        const response = await ApiBaseUrl.get("/take-attendance-out", {
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        setMsgAlert(response.data.message);
+        setTypeAlert("success");
+        setTimeout(() => {
+          setMsgAlert("");
+        }, 2000);
+      } else {
+        setMsgAlert("Absen Pulang hanya bisa di 17.00 - 07.00");
+        setTypeAlert("fail");
+      }
+    } catch (error) {
+      console.log(error);
+      setMsgAlert(error.response.data.message);
+      setTypeAlert(error.response.data.status);
+    }
   };
 
   return (
@@ -65,21 +140,57 @@ export default function Attendance() {
         <h1 className="mt-3">
           <strong>{timeFormat}</strong>
         </h1>
-        <div className=" mt-4">
-          <button className="btn btn-success me-3 mb-3">
+        <div className="mt-4">
+          <button
+            className="btn btn-success me-3 mb-3"
+            onClick={handleTakeAttendanceIn}
+          >
             Ambil absen masuk
           </button>
-          <button className="btn btn-secondary me-3 mb-3">
+          <button
+            className="btn btn-secondary me-3 mb-3"
+            onClick={handleTakeAttendanceOut}
+          >
             Ambil absen pulang
           </button>
+        </div>
+        <div className="mt-4">
+          {/* Alert */}
+          {msgAlert !== "" && (
+            <div
+              className={`alert alert-dismissible fade show ${
+                typeAlert === "fail" ? "alert-danger" : "alert-success"
+              }`}
+              role="alert"
+            >
+              <div style={{ display: "flex", alignItems: "center" }}>
+                {typeAlert === "success" && (
+                  <div className="spinner-border me-2" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                )}
+                {msgAlert}
+              </div>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                onClick={() => {
+                  setMsgAlert("");
+                }}
+              ></button>
+            </div>
+          )}
+          {/* End Alert */}
         </div>
       </div>
       <div style={{ marginTop: "100px" }}>
         <p style={{ margin: "0" }}>
-          - Ambil absen masuk, hanya di jam 05.00 - 07.59
+          - Ambil absen masuk, hanya di jam {timeStartIn} -{timeEndIn}
         </p>
         <p style={{ margin: "0" }}>
-          - Ambil absen pulang, hanya di jam 17.00 - 23.59
+          - Ambil absen pulang, hanya di jam {timeStartOut} -{timeEndOut}
         </p>
       </div>
     </div>

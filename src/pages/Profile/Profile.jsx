@@ -78,7 +78,7 @@ export default function Profile() {
       setTypeAlert("success");
       setTimeout(() => {
         setMsgAlert("");
-      }, 1600);
+      }, 2000);
     } catch (error) {
       // console.log("Error in Login.jsx: ", error);
       setMsgAlert(error.response.data.message);
