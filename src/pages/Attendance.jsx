@@ -22,10 +22,6 @@ export default function Attendance() {
   };
   const timeFormat = jam.toLocaleTimeString("id-ID", optionsTime);
 
-  const dateNow2 = new Date();
-  const tanggalSekarang = `${dateNow2.getFullYear()}-${dateNow2.getMonth()}-${dateNow2.getDate()}`;
-  const jamSekarang = `${dateNow2.getHours()}.${dateNow2.getMinutes()}.${dateNow2.getSeconds()}`;
-
   useEffect(() => {
     dateNow();
     timeNow();
