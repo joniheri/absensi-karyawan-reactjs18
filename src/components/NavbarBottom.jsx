@@ -21,7 +21,8 @@ export default function NavbarBottom() {
                     to="/profile"
                     className={`nav-link ${
                       location.pathname === "/profile" ||
-                      location.pathname === "/edit-photo-profile"
+                      location.pathname === "/edit-photo-profile" ||
+                      location.pathname === "/change-password"
                         ? "active"
                         : ""
                     }`}
@@ -81,7 +82,10 @@ export default function NavbarBottom() {
                     <Link
                       to="/users"
                       className={`nav-link ${
-                        location.pathname === "/users" && "active"
+                        location.pathname === "/users" ||
+                        location.pathname === "/add-user"
+                          ? "active"
+                          : ""
                       }`}
                     >
                       <img

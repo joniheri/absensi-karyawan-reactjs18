@@ -91,7 +91,26 @@ export default function ChangePassword() {
 
   return (
     <div className="container-fluid mt-3">
-      <h3 className="border-bottom mb-4">ChangePassword</h3>
+      <h3 className="border-bottom mb-4">
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="assets/img/icons/icons8-back-100-black.png"
+            alt=""
+            style={{
+              height: "26px",
+              width: "auto",
+              marginRight: "10px",
+              marginTop: "2px",
+              cursor: "pointer",
+            }}
+            title="Back"
+            onClick={() => {
+              navigate("/profile");
+            }}
+          />
+          ChangePassword
+        </div>
+      </h3>
       <div className="row">
         <div className="col-md-4">
           <form onSubmit={handleSave}>
@@ -121,12 +140,6 @@ export default function ChangePassword() {
                 ></button>
               </div>
             )}
-            <h3
-              className={`mb-5 ${msgAlert === "" ? "mt-4" : "mt-2"}`}
-              style={{ textAlign: "center" }}
-            >
-              Change Password
-            </h3>
             <div className="mb-3">
               <div className="input-group">
                 <input

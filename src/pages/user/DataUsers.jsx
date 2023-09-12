@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ApiBaseUrl } from "../../configs/AppConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function DataUsers() {
+  const navigate = useNavigate();
+
   const [dataUsers, setDataUsers] = useState([]);
   const [dataAttendance, setDataAttendance] = useState([]);
 
@@ -85,8 +88,16 @@ export default function DataUsers() {
           style={{ backgroundColor: "#fff" }}
         >
           <div className="mt-4">
-            <div>
-              <button className="btn btn-success btn-sm">Add</button>
+            <div className="mb-2">
+              <button
+                className="btn btn-success"
+                onClick={() => {
+                  navigate("/add-user");
+                }}
+                style={{ width: "80px" }}
+              >
+                Add
+              </button>
             </div>
             <table className="table table-sm table-striped">
               <thead>
