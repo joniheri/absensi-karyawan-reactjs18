@@ -80,9 +80,18 @@ export default function SummaryAttendance() {
           <table className="table table-sm table-striped">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">Status Absen</th>
-                <th scope="col">Tanggal</th>
+                <th scope="col" className="bg-secondary text-white">
+                  No
+                </th>
+                <th scope="col" className="bg-secondary text-white">
+                  Status Absen
+                </th>
+                <th scope="col" className="bg-secondary text-white">
+                  Tanggal
+                </th>
+                <th scope="col" className="bg-secondary text-white">
+                  Jam
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -91,9 +100,8 @@ export default function SummaryAttendance() {
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{item.status}</td>
-                    <td>
-                      {item.dateAttendance} {item.timeAttendance}
-                    </td>
+                    <td>{item.dateAttendance}</td>
+                    <td>{item.timeAttendance}</td>
                   </tr>
                 );
               })}

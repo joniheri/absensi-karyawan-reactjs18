@@ -91,7 +91,9 @@ export default function Attendance() {
           setMsgAlert("");
         }, 2000);
       } else {
-        setMsgAlert("Absen Masuk hanya bisa di 05.00 - 07.00");
+        setMsgAlert(
+          `Ambil absen masuk, hanya di jam ${timeStartIn} - ${timeEndIn}`
+        );
         setTypeAlert("fail");
       }
     } catch (error) {
@@ -119,7 +121,9 @@ export default function Attendance() {
           setMsgAlert("");
         }, 2000);
       } else {
-        setMsgAlert("Absen Pulang hanya bisa di 17.00 - 07.00");
+        setMsgAlert(
+          `Ambil absen pulang, hanya di jam ${timeStartOut} - ${timeEndOut}`
+        );
         setTypeAlert("fail");
       }
     } catch (error) {
@@ -183,10 +187,10 @@ export default function Attendance() {
       </div>
       <div className="text-center" style={{ marginTop: "100px" }}>
         <p style={{ margin: "0" }}>
-          - Ambil absen masuk, hanya di jam {timeStartIn} -{timeEndIn}
+          - Ambil absen masuk, hanya di jam {timeStartIn} - {timeEndIn}
         </p>
         <p style={{ margin: "0" }}>
-          - Ambil absen pulang, hanya di jam {timeStartOut} -{timeEndOut}
+          - Ambil absen pulang, hanya di jam {timeStartOut} - {timeEndOut}
         </p>
       </div>
     </div>
