@@ -181,7 +181,7 @@ export default function Attendance() {
           {/* End Alert */}
         </div>
       </div>
-      <div style={{ marginTop: "100px" }}>
+      <div className="text-center" style={{ marginTop: "100px" }}>
         <p style={{ margin: "0" }}>
           - Ambil absen masuk, hanya di jam {timeStartIn} -{timeEndIn}
         </p>
