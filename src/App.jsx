@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useContext } from "react";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { ApiBaseUrl } from "./configs/AppConfig";
 import { GlobalContext } from "./context/GlobalContext";

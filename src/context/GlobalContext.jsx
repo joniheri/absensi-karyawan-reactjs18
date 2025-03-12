@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import PropTypes from "prop-types";
 
 export const GlobalContext = createContext();
 
@@ -10,6 +11,11 @@ export const GlobalContextProvider = (props) => {
       {props.children}
     </GlobalContext.Provider>
   );
+};
+
+// Tambahkan propTypes
+GlobalContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 const initialState = {
