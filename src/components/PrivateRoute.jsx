@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { ApiBaseUrl } from "../configs/AppConfig";
 import { GlobalContext } from "../context/GlobalContext";
 
 export default function PrivateRoute() {
-  const [globalState, globalDispatch] = useContext(GlobalContext);
+  const [, globalDispatch] = useContext(GlobalContext);
 
   const [isLogin, setIsLogin] = useState(true);
 

@@ -1,8 +1,8 @@
-import Reac, { useState } from "react";
+import { useState } from "react";
 
 export default function Logout() {
-  const [msgAlert, setMsgAlert] = useState("");
-  const [typeAlert, setTypeAlert] = useState("");
+  // const [msgAlert, setMsgAlert] = useState("");
+  // const [typeAlert, setTypeAlert] = useState("");
 
   return <div>Logout</div>;
 }

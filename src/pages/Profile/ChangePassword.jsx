@@ -1,7 +1,10 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { ApiBaseUrl } from "../../configs/AppConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
+  const navigate = useNavigate();
+
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiBaseUrl } from "../../configs/AppConfig";
 import { useState } from "react";
@@ -9,7 +8,7 @@ export default function AddUser() {
   const [msgAlert, setMsgAlert] = useState("");
   const [typeAlert, setTypeAlert] = useState("");
 
-  const [showPassword, setShowPasswrod] = useState(false);
+  // const [showPassword, setShowPasswrod] = useState(false);
 
   const [emailInput, setEmailInput] = useState("");
   const [usernameInput, setUsernameInput] = useState("");

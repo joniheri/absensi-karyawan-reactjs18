@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiBaseUrl } from "../../configs/AppConfig";
 import { useNavigate } from "react-router-dom";
 
@@ -134,7 +134,10 @@ export default function DataUsers() {
           <div className="row mt-4">
             <div className="col-md-12">
               <div className="input-group mb-4">
-                <label className="input-group-text" for="inputGroupSelect01">
+                <label
+                  className="input-group-text"
+                  htmlFor="inputGroupSelect01"
+                >
                   User
                 </label>
                 <select
