@@ -21,7 +21,7 @@ import AddUser from "./pages/user/AddUser";
 
 function App() {
   const navigate = useNavigate();
-  const [globalState, globalDispatch] = useContext(GlobalContext);
+  const [, globalDispatch] = useContext(GlobalContext);
 
   useEffect(() => {
     checkToken();

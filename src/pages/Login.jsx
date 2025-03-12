@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GlobalContext } from "../context/GlobalContext";
 import { ApiBaseUrl } from "../configs/AppConfig";
@@ -6,7 +6,7 @@ import { ApiBaseUrl } from "../configs/AppConfig";
 export default function Login() {
   const navigate = useNavigate();
 
-  const [globalState, globalDispatch] = useContext(GlobalContext);
+  const [, globalDispatch] = useContext(GlobalContext);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);

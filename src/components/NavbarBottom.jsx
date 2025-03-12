@@ -4,8 +4,8 @@ import { GlobalContext } from "../context/GlobalContext";
 
 export default function NavbarBottom() {
   const location = useLocation();
-  const [globalState, globalDispatch] = useContext(GlobalContext);
   const navigate = useNavigate();
+  const [globalState, globalDispatch] = useContext(GlobalContext);
 
   return (
     <>

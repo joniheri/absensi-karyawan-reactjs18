@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ApiBaseUrl } from "../configs/AppConfig";
 
 export default function Attendance() {

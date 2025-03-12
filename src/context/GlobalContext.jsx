@@ -31,6 +31,7 @@ const reduces = (state, action) => {
       userLogin: action.data,
     };
   } else if (action.type === "PROCESS_LOGOUT") {
+    localStorage.clear();
     return {
       ...state,
       isLogin: false,
